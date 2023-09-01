@@ -28,15 +28,14 @@ class userDataController extends Controller
     }
 
     public function mapColumn(Request $request){
-         $file = $request->file('file');
-         $filePath = $file->store();
-         $temporaryFilePath = storage_path('app/public/'.$filePath);
-         //Session::put('file', $temporaryFilePath);
-         $spreadsheet = IOFactory::load($temporaryFilePath);
-         $worksheet = $spreadsheet->getActiveSheet();
-         $data = $worksheet->toArray();
-         $headerRow = array_shift($data);
-         return view('whichForWhichColumn', ['header' => $headerRow, 'data' => $data,'file'=>$temporaryFilePath]);
+        $file = $request->file('file');
+        $filePath = $file->store();
+        $temporaryFilePath = storage_path('app/public/'.$filePath);
+        $spreadsheet = IOFactory::load($temporaryFilePath);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $data = $worksheet->toArray();
+        $headerRow = array_shift($data);
+        return view('whichForWhichColumn', ['header' => $headerRow, 'data' => $data,'file'=>$temporaryFilePath]);
 
     }
 
@@ -44,16 +43,8 @@ class userDataController extends Controller
     {
 
         $file=$request->file;
-      //  dd(storage_path("temp/". $file));
-//        $file = IOFactory::load($filePath);
         $columns = $request->only(['full_name', 'phone_number', 'email']);
-      //  dd($columns);
-//        if (file_exists(storage_path('app/public/'.$file))){
-//            dd('1');
-//        }
-//        dd('2');
         Excel::import(new UsersImport($columns), $file);
-
         return redirect()->route('data')->with('success', 'All is saved!');
     }
 
