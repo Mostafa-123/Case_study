@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [userDataController::class, 'allUsersData']);
+Route::get('/', [userDataController::class, 'allUsersData'])->name('data');
+Route::get('/selectColumnsToExcel', [userDataController::class, 'selectColumns'])->name('selectColumnsToExcel');
 Route::get('/usersData/exportExcel', [userDataController::class, 'export'])->name('userExcelData');
 
 Route::get('/selectExcel', [userDataController::class, 'select'])->name('selectExcelData');
+Route::post('/mapColumn', [userDataController::class, 'mapColumn'])->name('mapColumn');
 Route::post('/usersData/importExcel', [userDataController::class, 'import'])->name('importExcelData');

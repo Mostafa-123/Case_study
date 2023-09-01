@@ -54,8 +54,7 @@
 </head>
 <body>
 
-<a href="{{route('userExcelData')}}" onclick="myFunction()" class="button">Data Excel</a>
-
+<a href="{{route('selectColumnsToExcel')}}"  class="button">Export Excel</a>
 <a href="{{route('selectExcelData')}}"  class="buttonn">import Excel</a>
 
 

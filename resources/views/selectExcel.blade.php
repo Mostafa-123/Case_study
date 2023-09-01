@@ -87,7 +87,7 @@
 <body>
 <div class="container">
     <h1>Excel Import</h1>
-    <form action="/usersData/importExcel" method="post" enctype="multipart/form-data">
+    <form action="/mapColumn" method="post" enctype="multipart/form-data">
         @csrf
         <label for="fileInput">Choose a file:</label>
         <input class="custom-file-input" type="file" id="fileInput" name="file">
