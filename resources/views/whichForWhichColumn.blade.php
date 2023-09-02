@@ -160,12 +160,12 @@
         <button type="submit" onclick="myFunction()">Import Data</button>
     </form>
 </div>
+<h2>Your Data From Your Excel</h2>
 <table id="customers">
     <tr>
-        <th>ID</th>
-        <th>FULL_NAME</th>
-        <th>PHONE_NUMBER</th>
-        <th>EMAiL</th>
+        @foreach ($header as $excelColumn)
+        <th>{{ $excelColumn }}</th>
+        @endforeach
     </tr>
 
     @foreach($data as $user)
